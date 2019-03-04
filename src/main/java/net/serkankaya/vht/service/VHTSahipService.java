@@ -5,7 +5,7 @@ import java.util.List;
 import net.serkankaya.vht.exception.SahipNotFoundException;
 import net.serkankaya.vht.model.Sahip;
 
-public interface VHTService {
+public interface VHTSahipService {
 	List<Sahip> getirTumSahipleri();
 	List<Sahip> getirSahipIsimİle(String ad);
 	Sahip getirSahipIdIle(Long id) throws SahipNotFoundException;

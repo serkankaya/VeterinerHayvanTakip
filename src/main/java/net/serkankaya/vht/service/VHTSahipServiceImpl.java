@@ -13,7 +13,7 @@ import net.serkankaya.vht.model.Sahip;
 
 @Service
 @Transactional(rollbackFor=Exception.class)
-public class VHTServiceImpl implements VHTService {
+public class VHTSahipServiceImpl implements VHTSahipService {
 
 	private SahipRepository sahipRepository;
 	

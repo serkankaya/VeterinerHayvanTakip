@@ -1,10 +1,10 @@
-package net.serkankaya.vht.dao;
+package net.serkankaya.vht.service;
 
 import java.util.List;
 
 import net.serkankaya.vht.model.Hayvan;
 
-public interface HayvanRepository {
+public interface VHTHayvanService {
 	Hayvan getirIdIle(Long id);
 	List<Hayvan> getirTumhayvanlari();
 	void olustur(Hayvan hayvan);

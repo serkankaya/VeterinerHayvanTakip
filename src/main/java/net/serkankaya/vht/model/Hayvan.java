@@ -11,12 +11,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Hayvan")
+@SequenceGenerator(name = Sahip.SEQUENCE_NAME, sequenceName = Sahip.SEQUENCE_NAME, initialValue =10,
+allocationSize =100)
 public class Hayvan {
+	public static final String SEQUENCE_NAME = "VHT_SEQUENCE_ID";
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="VHTSegGen")
-	@SequenceGenerator(name="VHTSegGen",sequenceName="vht_sequence")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQUENCE_NAME)
 	private long hayvanID;
-//	private int sahipID;
 	private String tur;
 	private String cins;
 	private String yas;
@@ -38,12 +39,7 @@ public class Hayvan {
 	public void setHayvanID(long hayvanID) {
 		this.hayvanID = hayvanID;
 	}
-//	public int getSahipID() {
-//		return sahipID;
-//	}
-//	public void setSahipID(int sahipID) {
-//		this.sahipID = sahipID;
-//	}
+
 	public String getTur() {
 		return tur;
 	}

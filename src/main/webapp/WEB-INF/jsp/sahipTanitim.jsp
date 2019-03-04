@@ -41,14 +41,16 @@
 						<li class="nav-item active"><a class="nav-link" href="/">Anasayfa
 								<span class="sr-only">(current)</span>
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="/hayvan-tanitim">Hayvan Tanıtımı</a></li>
-<!-- 						<li class="nav-item"><a class="nav-link disabled" href="#">Sahip Tanıtımı</a> -->
-						<li class="nav-item"><a class="nav-link" href="/sahip-tanitim">Sahip Tanıtımı</a>
+						<li class="nav-item"><a class="nav-link"
+							href="/hayvan-tanitim">Hayvan Tanıtımı</a></li>
+						<!-- 						<li class="nav-item"><a class="nav-link disabled" href="#">Sahip Tanıtımı</a> -->
+						<li class="nav-item"><a class="nav-link"
+							href="/sahip-tanitim">Sahip Tanıtımı</a>
 						<li class="nav-item">
 							<form action="logout" method="post">
-								<button type="submit" class="btn btn-outline-danger">Çıkış</button> 
-								<input type="hidden"
-									name="${_csrf.parameterName}" value="${_csrf.token}">
+								<button type="submit" class="btn btn-outline-danger">Çıkış</button>
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}">
 							</form>
 						</li>
 					</ul>
@@ -62,37 +64,56 @@
 
 		</div>
 		<div id="body">
-			<div class="jumbotron" style="background-color:transparent !important;">
-				<h3>Veteriner Hayvan Takip</h3>
-				<h5>Kullanılan Teknolojiler;</h5>
-				<h6> * Maven</h6>
-				<h6> * Bootstrap</h6>
-				<h6> * Spring Boot</h6>
-				<h6> * JPA-Hibernate</h6>
-				<h6> * Tomcat(Gömülü)</h6>
-				<h6> * Spring Security</h6>
-				<h6> * Java Server Pages</h6>
-				<h6> * H2 Veritabanı(Gömülü)</h6>
-				
-				
-				
-				
-				
-				
-				
-				<p>
-<!-- 					<a class="btn btn-lg btn-primary" href="../../components/#navbar" -->
-<!-- 						role="button">View navbar docs &raquo;</a> -->
-				</p>
+			<div class="jumbotron"
+				style="background-color: transparent !important;">
+				<h3 class="text-primary">Sahip Tanıtımı</h3>
+				<ul class="list-group">
+					<li class="list-group-item">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th scope="col">ID</th>
+									<th scope="col">Ad</th>
+									<th scope="col">Soyad</th>
+									<th scope="col">Adres</th>
+									<th scope="col">Telefon</th>
+									<th scope="col">E-Posta</th>
+									<th scope="col">Düzenle</th>
+									<th scope="col">Sil</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${sahipler}" var="sahipler">
+									<tr>
+										<td>${sahipler.id}</td>
+										<td>${sahipler.ad}</td>
+										<td>${sahipler.soyad}</td>
+										<td>${sahipler.adres}</td>
+										<td>${sahipler.telefon}</td>
+										<td>${sahipler.eposta}</td>
+										<td>
+											<button type="button" class="btn btn-outline-success">Güncelle</button>
+											
+										</td>
+										<td>
+											<form action="${pageContext.request.contextPath}/sahipSil/${sahipler.id}" method="get">
+											<button onclick="return confirm('Silme işlemi gerçekleşsin mi ?')" type="submit" class="btn btn-outline-danger">Sil</button>
+											</form>
+										</td>
+									</tr>
+								</c:forEach>
+
+							</tbody>
+						</table>
+					</li>
+				</ul>
 			</div>
 		</div>
 		<div id="footer">
 			<footer class="font-small blue pt-4">
 				<!-- Copyright -->
-				<div class="footer-copyright text-center py-3">
-					Serkan Kaya © 2019 Copyright - Veteriner Hayvan
-						Takip v1.0 - MIT License
-				</div>
+				<div class="footer-copyright text-center py-3">Serkan Kaya ©
+					2019 Copyright - Veteriner Hayvan Takip v1.0 - MIT License</div>
 				<!-- Copyright -->
 
 			</footer>

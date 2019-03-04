@@ -15,13 +15,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name="Sahip")
-@SequenceGenerator(name = Sahip.SAHIP_SEQUENCE_NAME, sequenceName = Sahip.SAHIP_SEQUENCE_NAME, initialValue =10,
+@SequenceGenerator(name = Sahip.SEQUENCE_NAME, sequenceName = Sahip.SEQUENCE_NAME, initialValue =10,
 allocationSize =100)
 public class Sahip {
-	public static final String SAHIP_SEQUENCE_NAME = "SAHIP_SEQUENCE_ID";
+	public static final String SEQUENCE_NAME = "VHT_SEQUENCE_ID";
 	@Id
-//	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SAHIP_SEQUENCE_NAME)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQUENCE_NAME)
 	private long id;
 	private String ad;
 	private String soyad;

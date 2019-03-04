@@ -41,9 +41,9 @@
 						<li class="nav-item active"><a class="nav-link" href="/">Anasayfa
 								<span class="sr-only">(current)</span>
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="/hayvan-tanitim">Hayvan Tanıtımı</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Hayvan Tanıtımı</a></li>
 <!-- 						<li class="nav-item"><a class="nav-link disabled" href="#">Sahip Tanıtımı</a> -->
-						<li class="nav-item"><a class="nav-link" href="/sahip-tanitim">Sahip Tanıtımı</a>
+						<li class="nav-item"><a class="nav-link" href="#">Sahip Tanıtımı</a>
 						<li class="nav-item">
 							<form action="logout" method="post">
 								<button type="submit" class="btn btn-outline-danger">Çıkış</button> 
@@ -63,23 +63,11 @@
 		</div>
 		<div id="body">
 			<div class="jumbotron" style="background-color:transparent !important;">
-				<h3>Veteriner Hayvan Takip</h3>
-				<h5>Kullanılan Teknolojiler;</h5>
-				<h6> * Maven</h6>
-				<h6> * Bootstrap</h6>
-				<h6> * Spring Boot</h6>
-				<h6> * JPA-Hibernate</h6>
-				<h6> * Tomcat(Gömülü)</h6>
-				<h6> * Spring Security</h6>
-				<h6> * Java Server Pages</h6>
-				<h6> * H2 Veritabanı(Gömülü)</h6>
-				
-				
-				
-				
-				
-				
-				
+				<h1>Navbar example</h1>
+				<p>This example is a quick exercise to illustrate how the
+					default, static navbar and fixed to top navbar work. It includes
+					the responsive CSS and HTML, so it also adapts to your viewport and
+					device.</p>
 				<p>
 <!-- 					<a class="btn btn-lg btn-primary" href="../../components/#navbar" -->
 <!-- 						role="button">View navbar docs &raquo;</a> -->

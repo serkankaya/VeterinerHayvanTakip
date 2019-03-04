@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import net.serkankaya.vht.model.Sahip;
-import net.serkankaya.vht.service.VHTService;
+import net.serkankaya.vht.service.VHTSahipService;
 
 @Controller
 public class YeniSahipController {
 	
 	@Autowired
-	private VHTService vhtService;
+	private VHTSahipService vhtService;
 	
 	@Secured("ROLE_ADMIN")
 	@RequestMapping(value="/sahip/yeni",method=RequestMethod.GET)
