@@ -1,6 +1,8 @@
 package net.serkankaya.vht.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -18,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @SequenceGenerator(name = Sahip.SEQUENCE_NAME, sequenceName = Sahip.SEQUENCE_NAME, initialValue =10,
 allocationSize =100)
 public class Sahip {
-	public static final String SEQUENCE_NAME = "VHT_SEQUENCE_ID";
+	public static final String SEQUENCE_NAME = "SAHIP_SEQUENCE_ID";
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQUENCE_NAME)
 	private long id;
@@ -28,8 +30,8 @@ public class Sahip {
 	private String telefon;
 	private String eposta;
 
-	@OneToMany(mappedBy="sahip")
-	private Set<Hayvan> hayvanlar=new HashSet<>();
+	@OneToMany
+	private List<Hayvan> hayvanlar = new ArrayList<Hayvan>();
 	
 
 	public long getId() {
@@ -68,11 +70,14 @@ public class Sahip {
 	public void setEposta(String eposta) {
 		this.eposta = eposta;
 	}
-	@Override
-	public String toString() {
-		return "Sahip [id=" + id + ", ad=" + ad + ", soyad=" + soyad + ", adres=" + adres + ", telefon=" + telefon
-				+ ", eposta=" + eposta + ", hayvanlar=" + hayvanlar + "]";
+	public List<Hayvan> getHayvanlar() {
+		return hayvanlar;
 	}
+	public void setHayvanlar(List<Hayvan> hayvanlar) {
+		this.hayvanlar = hayvanlar;
+	}
+
+	
 
 	
 }

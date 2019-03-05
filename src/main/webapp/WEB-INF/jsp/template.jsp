@@ -41,14 +41,16 @@
 						<li class="nav-item active"><a class="nav-link" href="/">Anasayfa
 								<span class="sr-only">(current)</span>
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Hayvan Tanıtımı</a></li>
-<!-- 						<li class="nav-item"><a class="nav-link disabled" href="#">Sahip Tanıtımı</a> -->
-						<li class="nav-item"><a class="nav-link" href="#">Sahip Tanıtımı</a>
+						<li class="nav-item"><a class="nav-link" href="#">Hayvan
+								Tanıtımı</a></li>
+						<!-- 						<li class="nav-item"><a class="nav-link disabled" href="#">Sahip Tanıtımı</a> -->
+						<li class="nav-item"><a class="nav-link" href="#">Sahip
+								Tanıtımı</a>
 						<li class="nav-item">
 							<form action="logout" method="post">
-								<button type="submit" class="btn btn-outline-danger">Çıkış</button> 
-								<input type="hidden"
-									name="${_csrf.parameterName}" value="${_csrf.token}">
+								<button type="submit" class="btn btn-outline-danger">Çıkış</button>
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}">
 							</form>
 						</li>
 					</ul>
@@ -62,25 +64,24 @@
 
 		</div>
 		<div id="body">
-			<div class="jumbotron" style="background-color:transparent !important;">
+			<div class="jumbotron"
+				style="background-color: transparent !important;">
 				<h1>Navbar example</h1>
 				<p>This example is a quick exercise to illustrate how the
 					default, static navbar and fixed to top navbar work. It includes
 					the responsive CSS and HTML, so it also adapts to your viewport and
 					device.</p>
 				<p>
-<!-- 					<a class="btn btn-lg btn-primary" href="../../components/#navbar" -->
-<!-- 						role="button">View navbar docs &raquo;</a> -->
+					<!-- 					<a class="btn btn-lg btn-primary" href="../../components/#navbar" -->
+					<!-- 						role="button">View navbar docs &raquo;</a> -->
 				</p>
 			</div>
 		</div>
 		<div id="footer">
 			<footer class="font-small blue pt-4">
 				<!-- Copyright -->
-				<div class="footer-copyright text-center py-3">
-					Serkan Kaya © 2019 Copyright - Veteriner Hayvan
-						Takip v1.0 - MIT License
-				</div>
+				<div class="footer-copyright text-center py-3">* Veteriner
+					Hayvan Takip v1.0 -Serkan Kaya - © 2019 -MIT License *</div>
 				<!-- Copyright -->
 
 			</footer>

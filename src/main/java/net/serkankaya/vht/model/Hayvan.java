@@ -11,10 +11,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Hayvan")
-@SequenceGenerator(name = Sahip.SEQUENCE_NAME, sequenceName = Sahip.SEQUENCE_NAME, initialValue =10,
+@SequenceGenerator(name = Hayvan.SEQUENCE_NAME, sequenceName = Hayvan.SEQUENCE_NAME, initialValue =10,
 allocationSize =100)
 public class Hayvan {
-	public static final String SEQUENCE_NAME = "VHT_SEQUENCE_ID";
+	public static final String SEQUENCE_NAME = "HAYVAN_SEQUENCE_ID";
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQUENCE_NAME)
 	private long hayvanID;
@@ -23,16 +23,16 @@ public class Hayvan {
 	private String yas;
 	private String aciklama;
 	
-	@ManyToOne
-	@JoinColumn(name="sahipID")
-	private Sahip sahip;
+//	@ManyToOne
+//	@JoinColumn(name="sahipID")
+//	private Sahip sahip;
 	
-	public Sahip getSahip() {
-		return sahip;
-	}
-	public void setSahip(Sahip sahip) {
-		this.sahip = sahip;
-	}
+//	public Sahip getSahip() {
+//		return sahip;
+//	}
+//	public void setSahip(Sahip sahip) {
+//		this.sahip = sahip;
+//	}
 	public long getHayvanID() {
 		return hayvanID;
 	}
@@ -67,8 +67,9 @@ public class Hayvan {
 	@Override
 	public String toString() {
 		return "Hayvan [hayvanID=" + hayvanID + ", tur=" + tur + ", cins=" + cins + ", yas=" + yas + ", aciklama="
-				+ aciklama + ", sahip=" + sahip + "]";
+				+ aciklama + "]";
 	}
+
 
 
 }

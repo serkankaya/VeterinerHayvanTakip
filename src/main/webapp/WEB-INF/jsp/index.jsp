@@ -90,8 +90,8 @@
 			<footer class="font-small blue pt-4">
 				<!-- Copyright -->
 				<div class="footer-copyright text-center py-3">
-					Serkan Kaya © 2019 Copyright - Veteriner Hayvan
-						Takip v1.0 - MIT License
+					* Veteriner Hayvan
+						Takip v1.0 -Serkan Kaya - © 2019 -MIT License *
 				</div>
 				<!-- Copyright -->
 

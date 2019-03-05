@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,7 +69,20 @@
 		<div id="body">
 			<div class="jumbotron"
 				style="background-color: transparent !important;">
-				<h3 class="text-primary">Sahip Tanıtımı</h3>
+				<div class="row">
+					<div class="col-md-6 text-center">
+						<span class="float-md-left"><h3 class="text-primary">Sahip
+								Tanıtımı</h3></span>
+					</div>
+					<div class="col-md-6 text-center">
+						<span class="float-md-right">
+							<button type="button" class="btn btn-primary" data-toggle="modal"
+								data-target="#exampleModal">Sahip Ekle</button>
+						</span>
+					</div>
+				</div>
+
+
 				<ul class="list-group">
 					<li class="list-group-item">
 						<table class="table table-striped">
@@ -79,7 +95,9 @@
 									<th scope="col">Telefon</th>
 									<th scope="col">E-Posta</th>
 									<th scope="col">Düzenle</th>
+									<sec:authorize access="hasRole('ADMIN')">
 									<th scope="col">Sil</th>
+									</sec:authorize>
 								</tr>
 							</thead>
 							<tbody>
@@ -93,13 +111,19 @@
 										<td>${sahipler.eposta}</td>
 										<td>
 											<button type="button" class="btn btn-outline-success">Güncelle</button>
-											
+
 										</td>
-										<td>
-											<form action="${pageContext.request.contextPath}/sahipSil/${sahipler.id}" method="get">
-											<button onclick="return confirm('Silme işlemi gerçekleşsin mi ?')" type="submit" class="btn btn-outline-danger">Sil</button>
-											</form>
-										</td>
+										<sec:authorize access="hasRole('ADMIN')">
+											<td>
+												<form
+													action="${pageContext.request.contextPath}/sahipSil/${sahipler.id}"
+													method="get">
+													<button
+														onclick="return confirm('Silme işlemi gerçekleşsin mi ?')"
+														type="submit" class="btn btn-outline-danger">Sil</button>
+												</form>
+											</td>
+										</sec:authorize>
 									</tr>
 								</c:forEach>
 
@@ -112,13 +136,65 @@
 		<div id="footer">
 			<footer class="font-small blue pt-4">
 				<!-- Copyright -->
-				<div class="footer-copyright text-center py-3">Serkan Kaya ©
-					2019 Copyright - Veteriner Hayvan Takip v1.0 - MIT License</div>
+				<div class="footer-copyright text-center py-3">* Veteriner
+					Hayvan Takip v1.0 -Serkan Kaya - © 2019 -MIT License *</div>
 				<!-- Copyright -->
 
 			</footer>
 		</div>
-
+		<!-- Sahip Ekleme Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Sahip Ekleme
+							İşlemi</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form:form modelAttribute="sahip" method="post">
+							<div class="form-group">
+								<label for="ad">İsim</label>
+								<form:input path="ad" type="text" class="form-control" id="ad"
+									aria-describedby="adbilgi" placeholder="İsim Giriniz" />
+							</div>
+							<div class="form-group">
+								<label for="soyad">soyad</label>
+								<form:input path="soyad" type="text" class="form-control"
+									id="soyad" aria-describedby="soyadbilgi"
+									placeholder="Soyad Giriniz" />
+							</div>
+							<div class="form-group">
+								<label for="adres">Adres</label>
+								<form:input path="adres" type="text" class="form-control"
+									id="adres" aria-describedby="adresbilgi"
+									placeholder="Adres Giriniz" />
+							</div>
+							<div class="form-group">
+								<label for="telefon">Telefon</label>
+								<form:input path="telefon" type="tel" class="form-control"
+									id="telefon" aria-describedby="telefonbilgi"
+									placeholder="Telefon Giriniz" />
+							</div>
+							<div class="form-group">
+								<label for="eposta">E-Posta</label>
+								<form:input path="eposta" type="email" class="form-control"
+									id="eposta" aria-describedby="epostabilgi"
+									placeholder="E-Posta Giriniz" />
+							</div>
+							<form:button name="submit" type="submit" class="btn btn-primary">Kaydet</form:button>
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">İptal</button>
+						</form:form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Sahip Ekleme Modal -->
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
