@@ -19,7 +19,7 @@ public class VHTHayvanServiceImpl implements VHTHayvanService {
 	
 	@Override
 	public Hayvan getirIdIle(Long id) {
-		return hayvanRepository.getirIdIle(id);
+		return hayvanRepository.getirHayvanIdIle(id);
 	}
 
 	@Override

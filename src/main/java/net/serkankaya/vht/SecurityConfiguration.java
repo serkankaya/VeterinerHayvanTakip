@@ -22,10 +22,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 		.antMatchers("/**/favicon.ico", "/css/**", "/js/**", "/images/**", "/webjars/**", "/login.html").permitAll();
 		http.authorizeRequests().antMatchers("/actuator/**").access("hasRole('ADMIN')");
+//		http.authorizeRequests().antMatchers("/sahip/guncelle/**").access("hasRole('ADMIN')");
 		http.authorizeRequests().anyRequest().authenticated();
 		http.formLogin().loginPage("/login.html").loginProcessingUrl("/login").failureUrl("/login.html?loginFailed=true");
 		http.rememberMe().userDetailsService(userDetailsService);
 		http.httpBasic();
+		http.csrf().disable();
 	}
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {

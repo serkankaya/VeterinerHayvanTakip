@@ -18,7 +18,7 @@ public class HayvanRepositoryJpaImpl implements HayvanRepository {
 	private EntityManager entityManager;
 	
 	@Override
-	public Hayvan getirIdIle(Long id) {
+	public Hayvan getirHayvanIdIle(Long id) {
 		return entityManager.find(Hayvan.class,id);
 	}
 

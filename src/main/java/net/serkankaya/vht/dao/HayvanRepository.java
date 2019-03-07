@@ -5,7 +5,7 @@ import java.util.List;
 import net.serkankaya.vht.model.Hayvan;
 
 public interface HayvanRepository {
-	Hayvan getirIdIle(Long id);
+	Hayvan getirHayvanIdIle(Long id);
 	List<Hayvan> getirTumhayvanlari();
 	void olustur(Hayvan hayvan);
 	Hayvan guncelle(Hayvan hayvan);

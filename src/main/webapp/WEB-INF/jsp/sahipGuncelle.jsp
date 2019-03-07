@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="security"
+	uri="http://www.springframework.org/security/tags"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,11 +45,11 @@
 						<li class="nav-item active"><a class="nav-link" href="/">Anasayfa
 								<span class="sr-only">(current)</span>
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Hayvan
-								Tanıtımı</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/hayvan-tanitim">Hayvan Tanıtımı</a></li>
 						<!-- 						<li class="nav-item"><a class="nav-link disabled" href="#">Sahip Tanıtımı</a> -->
-						<li class="nav-item"><a class="nav-link" href="#">Sahip
-								Tanıtımı</a>
+						<li class="nav-item"><a class="nav-link"
+							href="/sahip-tanitim">Sahip Tanıtımı</a>
 						<li class="nav-item">
 							<form action="logout" method="post">
 								<button type="submit" class="btn btn-outline-danger">Çıkış</button>
@@ -54,9 +57,11 @@
 									value="${_csrf.token}">
 							</form>
 						</li>
-						<li class="navbar-text" style="color: blue;margin-left: 50px">Merhaba <span style="color: blue"><security:authentication
-									property="principal.username" /></span > , Kullanıcı Yetkisi: <security:authentication
-								property="principal.authorities" /></li>
+						<li class="navbar-text" style="color: blue; margin-left: 50px">Merhaba
+							<span style="color: blue"><security:authentication
+									property="principal.username" /></span> , Kullanıcı Yetkisi: <security:authentication
+								property="principal.authorities" />
+						</li>
 					</ul>
 					<form class="form-inline my-2 my-lg-0">
 						<input class="form-control mr-sm-3" type="search"
@@ -70,15 +75,55 @@
 		<div id="body">
 			<div class="jumbotron"
 				style="background-color: transparent !important;">
-				<h1>Navbar example</h1>
-				<p>This example is a quick exercise to illustrate how the
-					default, static navbar and fixed to top navbar work. It includes
-					the responsive CSS and HTML, so it also adapts to your viewport and
-					device.</p>
-				<p>
-					<!-- 					<a class="btn btn-lg btn-primary" href="../../components/#navbar" -->
-					<!-- 						role="button">View navbar docs &raquo;</a> -->
-				</p>
+				<div class="row">
+					<div class="col-md-6 text-center">
+						<span class="float-md-left"><h3 class="text-primary">Sahip
+								Güncelle</h3></span>
+					</div>
+					<div class="col-md-6 text-center">
+						<span class="float-md-right"> </span>
+					</div>
+				</div>
+				<form:form modelAttribute="sahipguncelle" method="post">
+					<div class="form-group">
+						<label for="ad">İsim</label>
+						<form:input path="ad" type="text" class="form-control" id="ad"
+							aria-describedby="adbilgi" placeholder="İsim Giriniz" />
+					</div>
+					<div class="form-group">
+						<label for="soyad">Soyad</label>
+						<form:input path="soyad" type="text" class="form-control"
+							id="soyad" aria-describedby="soyadbilgi"
+							placeholder="Soyad Giriniz" />
+					</div>
+					<div class="form-group">
+						<label for="adres">Adres</label>
+						<form:input path="adres" type="text" class="form-control"
+							id="adres" aria-describedby="adresbilgi"
+							placeholder="Adres Giriniz" />
+					</div>
+					<div class="form-group">
+						<label for="telefon">Telefon</label>
+						<form:input path="telefon" type="tel" class="form-control"
+							id="telefon" aria-describedby="telefonbilgi"
+							placeholder="Telefon Giriniz" />
+					</div>
+					<div class="form-group">
+						<label for="eposta">E-Posta</label>
+						<form:input path="eposta" type="email" class="form-control"
+							id="eposta" aria-describedby="epostabilgi"
+							placeholder="E-Posta Giriniz" />
+					</div>
+					<form:button name="submit" type="submit"
+						class="btn btn-outline-success">Güncelle</form:button>
+					<form action="/sahip-tanitim/${sahipler.id}">
+						<a class="btn btn-outline-danger"
+							href="${pageContext.request.contextPath}/sahip-tanitim/"
+							role="button">İptal</a>
+					</form>
+				</form:form>
+
+
 			</div>
 		</div>
 		<div id="footer">

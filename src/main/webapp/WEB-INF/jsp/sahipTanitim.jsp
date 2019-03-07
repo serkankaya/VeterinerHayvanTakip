@@ -2,8 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="sec"
+<%@ taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,6 +57,11 @@
 									value="${_csrf.token}">
 							</form>
 						</li>
+						<li class="navbar-text" style="color: blue; margin-left: 50px">Merhaba
+							<span style="color: blue"><security:authentication
+									property="principal.username" /></span> , Kullanıcı Yetkisi: <security:authentication
+								property="principal.authorities" />
+						</li>
 					</ul>
 					<form class="form-inline my-2 my-lg-0">
 						<input class="form-control mr-sm-3" type="search"
@@ -95,9 +101,9 @@
 									<th scope="col">Telefon</th>
 									<th scope="col">E-Posta</th>
 									<th scope="col">Düzenle</th>
-									<sec:authorize access="hasRole('ADMIN')">
-									<th scope="col">Sil</th>
-									</sec:authorize>
+									<security:authorize access="hasRole('ADMIN')">
+										<th scope="col">Sil</th>
+									</security:authorize>
 								</tr>
 							</thead>
 							<tbody>
@@ -110,10 +116,14 @@
 										<td>${sahipler.telefon}</td>
 										<td>${sahipler.eposta}</td>
 										<td>
-											<button type="button" class="btn btn-outline-success">Güncelle</button>
+											<form action="/sahip/guncelle/${sahipler.id}">
+												<a class="btn btn-outline-success"
+													href="${pageContext.request.contextPath}/sahip/guncelle/${sahipler.id}"
+													role="button">Düzenle</a>
+											</form>
 
 										</td>
-										<sec:authorize access="hasRole('ADMIN')">
+										<security:authorize access="hasRole('ADMIN')">
 											<td>
 												<form
 													action="${pageContext.request.contextPath}/sahipSil/${sahipler.id}"
@@ -123,7 +133,7 @@
 														type="submit" class="btn btn-outline-danger">Sil</button>
 												</form>
 											</td>
-										</sec:authorize>
+										</security:authorize>
 									</tr>
 								</c:forEach>
 

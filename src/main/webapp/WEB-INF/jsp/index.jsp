@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,6 +52,9 @@
 									name="${_csrf.parameterName}" value="${_csrf.token}">
 							</form>
 						</li>
+						<li class="navbar-text" style="color: blue;margin-left: 50px">Merhaba <span style="color: blue"><security:authentication
+									property="principal.username" /></span > , Kullanıcı Yetkisi: <security:authentication
+								property="principal.authorities" /></li>
 					</ul>
 					<form class="form-inline my-2 my-lg-0">
 						<input class="form-control mr-sm-3" type="search"

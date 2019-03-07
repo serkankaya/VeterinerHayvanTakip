@@ -1,17 +1,20 @@
 package net.serkankaya.vht.web;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.core.context.SecurityContextHolder;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import net.serkankaya.vht.model.Hayvan;
 import net.serkankaya.vht.model.Sahip;
@@ -83,10 +86,37 @@ public class VHTController {
 		return new Hayvan();
 	}
 	
-	@Secured("ROLE_ADMIN")
+//	@Secured("ROLE_ADMIN")
 	@RequestMapping(value="/hayvan-tanitim",method=RequestMethod.POST)
 	public String handleFormSubmitForAddHayvan(@ModelAttribute Hayvan hayvan) {
 		vhtHayvanService.olustur(hayvan);
+		return "redirect:/hayvan-tanitim";
+	}
+	
+	@RequestMapping(value="/sahip/guncelle/{id}",method=RequestMethod.GET)
+	public String sahipBul(@PathVariable Long id, ModelMap modelMap) {
+		Sahip sahip = vhtSahipService.getirSahipIdIle(id);
+		modelMap.put("sahipguncelle", sahip);
+		return "sahipGuncelle";
+	}
+	
+	@RequestMapping(value="/sahip/guncelle/{id}",method=RequestMethod.POST)
+	public String sahipGuncelle(@ModelAttribute Sahip sahip) {
+		vhtSahipService.guncelle(sahip);
+		return "redirect:/sahip-tanitim";
+	}
+	
+	@RequestMapping(value="/hayvan/guncelle/{id}",method=RequestMethod.GET)
+	public String hayvanBul(@PathVariable Long id, ModelMap modelMap) {
+		Hayvan hayvan = vhtHayvanService.getirIdIle(id);
+		modelMap.put("hayvanguncelle", hayvan);
+		return "hayvanGuncelle";
+	}
+	
+	
+	@RequestMapping(value="/hayvan/guncelle/{id}",method=RequestMethod.POST)
+	public String hayvanGuncelle(@ModelAttribute Hayvan hayvan) {
+		vhtHayvanService.guncelle(hayvan);
 		return "redirect:/hayvan-tanitim";
 	}
 	
