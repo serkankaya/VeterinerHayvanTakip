@@ -114,7 +114,7 @@ public class VHTController {
 	}
 	
 	
-	@RequestMapping(value="/hayvan/guncelle/{id}",method=RequestMethod.POST)
+	@RequestMapping(value="/hayvan/guncelle/{hayvanID}",method=RequestMethod.POST)
 	public String hayvanGuncelle(@ModelAttribute Hayvan hayvan) {
 		vhtHayvanService.guncelle(hayvan);
 		return "redirect:/hayvan-tanitim";
