@@ -18,6 +18,7 @@ public class Hayvan {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQUENCE_NAME)
 	private long hayvanID;
+	private String ad;
 	private String tur;
 	private String cins;
 	private String yas;
@@ -64,11 +65,19 @@ public class Hayvan {
 	public void setAciklama(String aciklama) {
 		this.aciklama = aciklama;
 	}
+	public String getAd() {
+		return ad;
+	}
+	public void setAd(String ad) {
+		this.ad = ad;
+	}
 	@Override
 	public String toString() {
-		return "Hayvan [hayvanID=" + hayvanID + ", tur=" + tur + ", cins=" + cins + ", yas=" + yas + ", aciklama="
-				+ aciklama + "]";
+		return "Hayvan [hayvanID=" + hayvanID + ", ad=" + ad + ", tur=" + tur + ", cins=" + cins + ", yas=" + yas
+				+ ", aciklama=" + aciklama + "]";
 	}
+
+
 
 
 

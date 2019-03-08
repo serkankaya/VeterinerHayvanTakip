@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 import net.serkankaya.vht.dao.SahipRepository;
+import net.serkankaya.vht.model.Hayvan;
 import net.serkankaya.vht.model.Sahip;
 
 @Repository("sahipRepository")
@@ -28,8 +29,11 @@ public class SahipRepositoryJpaImp implements SahipRepository {
 
 	@Override
 	public List<Sahip> getirAdIle(String ad) {
-		return entityManager.createQuery("from Sahip where ad = :ad",Sahip.class)
-				.setParameter("ad", ad).getResultList();
+//		return entityManager.createQuery("from Sahip where ad = :ad",Sahip.class)
+//				.setParameter("ad", ad).getResultList();
+		return entityManager.createQuery("from Sahip where lower(ad) LIKE lower(:sahipAdi)",Sahip.class)
+				.setParameter("sahipAdi", ad+"%")
+				.getResultList();
 	}
 
 	@Override

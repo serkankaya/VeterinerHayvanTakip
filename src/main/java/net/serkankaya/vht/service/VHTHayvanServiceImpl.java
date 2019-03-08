@@ -42,4 +42,9 @@ public class VHTHayvanServiceImpl implements VHTHayvanService {
 		hayvanRepository.sil(id);
 	}
 
+	@Override
+	public List<Hayvan> getirHayvanAdiIle(String ad) {
+		return hayvanRepository.hayvanAdiIleAra(ad);
+	}
+
 }

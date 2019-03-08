@@ -43,4 +43,11 @@ public class HayvanRepositoryJpaImpl implements HayvanRepository {
 
 	}
 
+	@Override
+	public List<Hayvan> hayvanAdiIleAra(String ad) {
+		return entityManager.createQuery("from Hayvan where lower(ad) LIKE lower(:hayvanAdi)",Hayvan.class)
+				.setParameter("hayvanAdi", ad+"%")
+				.getResultList();
+	}
+
 }

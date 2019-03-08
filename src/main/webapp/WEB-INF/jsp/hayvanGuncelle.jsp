@@ -86,7 +86,12 @@
 				</div>
 				<form:form modelAttribute="hayvanguncelle" method="post">
 					<div class="form-group">
-						<label for="ad">Tür</label>
+						<label for="ad">Ad</label>
+						<form:input path="ad" type="text" class="form-control" id="ad"
+							aria-describedby="adbilgi" placeholder="Ad Giriniz" />
+					</div>
+					<div class="form-group">
+						<label for="tur">Tür</label>
 						<form:input path="tur" type="text" class="form-control" id="tur"
 							aria-describedby="turbilgi" placeholder="Tür Giriniz" />
 					</div>

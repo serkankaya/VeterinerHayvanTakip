@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="security"
+	uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +23,13 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
+<script>
+	function setURL(form) {
+		form.action = "hayvan/ara/" + form.urlVal.value;
+		console.log(form.action);
+		event.preventDefault();
+	}
+</script>
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
@@ -56,13 +64,16 @@
 									value="${_csrf.token}">
 							</form>
 						</li>
-						<li class="navbar-text" style="color: blue;margin-left: 50px">Merhaba <span style="color: blue"><security:authentication
-									property="principal.username" /></span > , Kullanıcı Yetkisi: <security:authentication
-								property="principal.authorities" /></li>
+						<li class="navbar-text" style="color: blue; margin-left: 50px">Merhaba
+							<span style="color: blue"><security:authentication
+									property="principal.username" /></span> , Kullanıcı Yetkisi: <security:authentication
+								property="principal.authorities" />
+						</li>
 					</ul>
-					<form class="form-inline my-2 my-lg-0">
-						<input class="form-control mr-sm-3" type="search"
-							placeholder="Hayvan || Sahip Ara">
+					<form action="hayvan/ara/" onsubmit="setURL(this)"
+						class="form-inline my-2 my-lg-0" method="get">
+						<input id="ara" name="ara" class="form-control mr-sm-3"
+							type="search" placeholder="Hayvan Ara">
 						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">ARA</button>
 					</form>
 				</div>
@@ -91,6 +102,7 @@
 							<thead>
 								<tr>
 									<th scope="col">HayvanID</th>
+									<th scope="col">Ad</th>
 									<th scope="col">Tür</th>
 									<th scope="col">Cins</th>
 									<th scope="col">Yaş</th>
@@ -106,12 +118,13 @@
 								<c:forEach items="${hayvanlar}" var="hayvanlar">
 									<tr>
 										<td>${hayvanlar.hayvanID}</td>
+										<td>${hayvanlar.ad}</td>
 										<td>${hayvanlar.tur}</td>
 										<td>${hayvanlar.cins}</td>
 										<td>${hayvanlar.yas}</td>
 										<td style="max-width: 300px; word-wrap: break-word;">${hayvanlar.aciklama}</td>
 										<td>
-												<form action="/hayvan/guncelle/${hayvanlar.hayvanID}">
+											<form action="/hayvan/guncelle/${hayvanlar.hayvanID}">
 												<a class="btn btn-outline-success"
 													href="${pageContext.request.contextPath}/hayvan/guncelle/${hayvanlar.hayvanID}"
 													role="button">Düzenle</a>
@@ -164,7 +177,12 @@
 					<div class="modal-body">
 						<form:form modelAttribute="hayvan" method="post">
 							<div class="form-group">
-								<label for="ad">Tür</label>
+								<label for="ad">Ad</label>
+								<form:input path="ad" type="text" class="form-control" id="ad"
+									aria-describedby="adbilgi" placeholder="Ad Giriniz" />
+							</div>
+							<div class="form-group">
+								<label for="tur">Tür</label>
 								<form:input path="tur" type="text" class="form-control" id="tur"
 									aria-describedby="turbilgi" placeholder="Tür Giriniz" />
 							</div>

@@ -24,11 +24,11 @@
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
 	<script>
-	function setURL(form) {
-		form.action = "sahip/ara/" + form.urlVal.value;
-		console.log(form.action);
-		event.preventDefault();
-	}
+function setURL(form) {
+    form.action="sahip/ara"+form.urlVal.value;
+    console.log(form.action);
+    event.preventDefault();
+}
 </script>
 <!-- Required meta tags -->
 <meta charset="utf-8">
@@ -70,7 +70,7 @@
 								property="principal.authorities" />
 						</li>
 					</ul>
-					<form action="sahip/ara/" onsubmit="setURL(this)" class="form-inline my-2 my-lg-0" method="get">
+					<form action="" onsubmit="setURL(this)" class="form-inline my-2 my-lg-0" method="get">
 						<input id="ad" name="ara" class="form-control mr-sm-3" type="search"
 							placeholder="Sahip Ara">
 						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">ARA</button>

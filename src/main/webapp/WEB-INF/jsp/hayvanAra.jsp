@@ -23,12 +23,13 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
-	<script>
-	function setURL(form) {
-		form.action = "sahip/ara/" + form.urlVal.value;
-		console.log(form.action);
-		event.preventDefault();
-	}
+
+<script>
+function setURL(form) {
+    form.action="hayvan/ara/"+form.urlVal.value;
+    console.log(form.action);
+    event.preventDefault();
+}
 </script>
 <!-- Required meta tags -->
 <meta charset="utf-8">
@@ -70,11 +71,13 @@
 								property="principal.authorities" />
 						</li>
 					</ul>
-					<form action="sahip/ara/" onsubmit="setURL(this)" class="form-inline my-2 my-lg-0" method="get">
+					<form action="" onsubmit="setURL(this)" class="form-inline my-2 my-lg-0" method="get">
 						<input id="ad" name="ara" class="form-control mr-sm-3" type="search"
-							placeholder="Sahip Ara">
+							placeholder="Hayvan Ara">
 						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">ARA</button>
 					</form>
+					
+					
 				</div>
 			</nav>
 
@@ -82,58 +85,57 @@
 		<div id="body">
 			<div class="jumbotron"
 				style="background-color: transparent !important;">
+
 				<div class="row">
 					<div class="col-md-6 text-center">
-						<span class="float-md-left"><h3 class="text-primary">Sahip
-								Tanıtımı</h3></span>
+						<span class="float-md-left"><h3 class="text-primary">Hayvan
+								Tanıtımı</h3>
 					</div>
 					<div class="col-md-6 text-center">
 						<span class="float-md-right">
 							<button type="button" class="btn btn-primary" data-toggle="modal"
-								data-target="#exampleModal">Sahip Ekle</button>
+								data-target="#exampleModal">Hayvan Ekle</button>
 						</span>
 					</div>
 				</div>
-
-
 				<ul class="list-group">
 					<li class="list-group-item">
 						<table class="table table-striped">
 							<thead>
 								<tr>
-									<th scope="col">ID</th>
+									<th scope="col">HayvanID</th>
 									<th scope="col">Ad</th>
-									<th scope="col">Soyad</th>
-									<th scope="col">Adres</th>
-									<th scope="col">Telefon</th>
-									<th scope="col">E-Posta</th>
+									<th scope="col">Tür</th>
+									<th scope="col">Cins</th>
+									<th scope="col">Yaş</th>
+									<th scope="col">Açıklama</th>
 									<th scope="col">Düzenle</th>
 									<security:authorize access="hasRole('ADMIN')">
 										<th scope="col">Sil</th>
 									</security:authorize>
+
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${sahipler}" var="sahipler">
+								<c:forEach items="${hayvanlar}" var="hayvanlar">
 									<tr>
-										<td>${sahipler.id}</td>
-										<td>${sahipler.ad}</td>
-										<td>${sahipler.soyad}</td>
-										<td>${sahipler.adres}</td>
-										<td>${sahipler.telefon}</td>
-										<td>${sahipler.eposta}</td>
+										<td>${hayvanlar.hayvanID}</td>
+										<td>${hayvanlar.ad}</td>
+										<td>${hayvanlar.tur}</td>
+										<td>${hayvanlar.cins}</td>
+										<td>${hayvanlar.yas}</td>
+										<td style="max-width: 300px; word-wrap: break-word;">${hayvanlar.aciklama}</td>
 										<td>
-											<form action="/sahip/guncelle/${sahipler.id}">
+											<form action="/hayvan/guncelle/${hayvanlar.hayvanID}">
 												<a class="btn btn-outline-success"
-													href="${pageContext.request.contextPath}/sahip/guncelle/${sahipler.id}"
+													href="${pageContext.request.contextPath}/hayvan/guncelle/${hayvanlar.hayvanID}"
 													role="button">Düzenle</a>
 											</form>
-
 										</td>
 										<security:authorize access="hasRole('ADMIN')">
 											<td>
 												<form
-													action="${pageContext.request.contextPath}/sahipSil/${sahipler.id}"
+													action="${pageContext.request.contextPath}/hayvanSil/${hayvanlar.hayvanID}"
 													method="get">
 													<button
 														onclick="return confirm('Silme işlemi gerçekleşsin mi ?')"
@@ -141,6 +143,7 @@
 												</form>
 											</td>
 										</security:authorize>
+
 									</tr>
 								</c:forEach>
 
@@ -148,6 +151,7 @@
 						</table>
 					</li>
 				</ul>
+
 			</div>
 		</div>
 		<div id="footer">
@@ -159,13 +163,13 @@
 
 			</footer>
 		</div>
-		<!-- Sahip Ekleme Modal -->
+		<!-- Hayvan Ekleme Modal -->
 		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Sahip Ekleme
+						<h5 class="modal-title" id="exampleModalLabel">Hayvan Ekleme
 							İşlemi</h5>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
@@ -173,36 +177,35 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<form:form modelAttribute="sahip" method="post">
+						<form:form modelAttribute="hayvan" method="post">
 							<div class="form-group">
-								<label for="ad">İsim</label>
+								<label for="ad">Ad</label>
 								<form:input path="ad" type="text" class="form-control" id="ad"
-									aria-describedby="adbilgi" placeholder="İsim Giriniz" />
+									aria-describedby="adbilgi" placeholder="Ad Giriniz" />
 							</div>
 							<div class="form-group">
-								<label for="soyad">Soyad</label>
-								<form:input path="soyad" type="text" class="form-control"
-									id="soyad" aria-describedby="soyadbilgi"
-									placeholder="Soyad Giriniz" />
+								<label for="tur">Tür</label>
+								<form:input path="tur" type="text" class="form-control" id="tur"
+									aria-describedby="turbilgi" placeholder="Tür Giriniz" />
 							</div>
 							<div class="form-group">
-								<label for="adres">Adres</label>
-								<form:input path="adres" type="text" class="form-control"
-									id="adres" aria-describedby="adresbilgi"
-									placeholder="Adres Giriniz" />
+								<label for="cins">Cins</label>
+								<form:input path="cins" type="text" class="form-control"
+									id="cins" aria-describedby="cinsbilgi"
+									placeholder="Cins Giriniz" />
 							</div>
 							<div class="form-group">
-								<label for="telefon">Telefon</label>
-								<form:input path="telefon" type="tel" class="form-control"
-									id="telefon" aria-describedby="telefonbilgi"
-									placeholder="Telefon Giriniz" />
+								<label for="adres">Yaş</label>
+								<form:input path="yas" type="text" class="form-control" id="yas"
+									aria-describedby="yasbilgi" placeholder="Yaş Giriniz" />
 							</div>
 							<div class="form-group">
-								<label for="eposta">E-Posta</label>
-								<form:input path="eposta" type="email" class="form-control"
-									id="eposta" aria-describedby="epostabilgi"
-									placeholder="E-Posta Giriniz" />
+								<label for="telefon">Açıklama</label>
+								<form:textarea path="aciklama" type="textarea"
+									class="form-control" id="aciklama"
+									aria-describedby="aciklamabilgi" placeholder="Açıklama Giriniz" />
 							</div>
+
 							<form:button name="submit" type="submit" class="btn btn-primary">Kaydet</form:button>
 							<button type="button" class="btn btn-secondary"
 								data-dismiss="modal">İptal</button>
@@ -211,7 +214,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- Sahip Ekleme Modal -->
+		<!-- Hayvan Ekleme Modal -->
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

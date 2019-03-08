@@ -56,11 +56,7 @@
 									property="principal.username" /></span > , Kullanıcı Yetkisi: <security:authentication
 								property="principal.authorities" /></li>
 					</ul>
-					<form class="form-inline my-2 my-lg-0">
-						<input class="form-control mr-sm-3" type="search"
-							placeholder="Hayvan || Sahip Ara">
-						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">ARA</button>
-					</form>
+
 				</div>
 			</nav>
 

@@ -10,8 +10,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -119,5 +121,21 @@ public class VHTController {
 		vhtHayvanService.guncelle(hayvan);
 		return "redirect:/hayvan-tanitim";
 	}
+	
+	@RequestMapping(value="/hayvan/ara/",method=RequestMethod.GET)
+	public ModelAndView hayvanAdiIleBul(@RequestParam("ara") @PathVariable String ad,ModelAndView mav) {
+		mav.addObject("hayvanlar",vhtHayvanService.getirHayvanAdiIle(ad));
+		mav.setViewName("hayvanAra");
+		return mav;
+	}
+	
+	@RequestMapping(value="/sahip/ara/",method=RequestMethod.GET)
+	public ModelAndView sahipAdiIleBul(@RequestParam("ara") @PathVariable String ad,ModelAndView mav) {
+		mav.addObject("sahipler",vhtSahipService.getirSahipIsimİle(ad));
+		mav.setViewName("sahipAra");
+		return mav;
+	}
+	
+
 	
 }
