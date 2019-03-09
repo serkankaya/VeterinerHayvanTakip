@@ -58,7 +58,7 @@ function setURL(form) {
 						<li class="nav-item"><a class="nav-link"
 							href="/sahip-tanitim">Sahip Tanıtımı</a>
 						<li class="nav-item">
-							<form action="logout" method="post">
+							<form action="../../logout" method="post">
 								<button type="submit" class="btn btn-outline-danger">Çıkış</button>
 								<input type="hidden" name="${_csrf.parameterName}"
 									value="${_csrf.token}">
