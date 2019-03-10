@@ -1,20 +1,22 @@
 package net.serkankaya.vht.dao.jpa;
 
-import java.util.List;
 
+import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import net.serkankaya.vht.dao.HayvanRepository;
 import net.serkankaya.vht.model.Hayvan;
-import net.serkankaya.vht.model.Sahip;
+import net.serkankaya.vht.model.HayvanSahip;
 
 @Repository("hayvanRepository")
 public class HayvanRepositoryJpaImpl implements HayvanRepository {
 	
-	@Autowired
+	
+	@PersistenceContext
 	private EntityManager entityManager;
 	
 	@Override
@@ -49,5 +51,13 @@ public class HayvanRepositoryJpaImpl implements HayvanRepository {
 				.setParameter("hayvanAdi", ad+"%")
 				.getResultList();
 	}
+
+	@Override
+	public List<HayvanSahip> getirHayvanSahipList() {
+		return entityManager.createQuery("SELECT new net.serkankaya.vht.model.HayvanSahip (HAYVAN.hayvanID,HAYVAN.ad,HAYVAN.tur,HAYVAN.cins,HAYVAN.yas,HAYVAN.aciklama,CONCAT(SAHIP.ad,' ',SAHIP.soyad)AS SAD) FROM Hayvan AS HAYVAN LEFT JOIN Sahip as SAHIP ON HAYVAN.sahipID=SAHIP.id",HayvanSahip.class)
+				.getResultList();
+	}
+	
+	
 
 }

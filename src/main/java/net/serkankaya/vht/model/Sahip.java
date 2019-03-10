@@ -7,14 +7,20 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name="Sahip")
@@ -30,10 +36,6 @@ public class Sahip {
 	private String adres;
 	private String telefon;
 	private String eposta;
-
-	@OneToMany
-	private List<Hayvan> hayvanlar = new ArrayList<Hayvan>();
-	
 
 	public long getId() {
 		return id;
@@ -71,12 +73,14 @@ public class Sahip {
 	public void setEposta(String eposta) {
 		this.eposta = eposta;
 	}
-	public List<Hayvan> getHayvanlar() {
-		return hayvanlar;
-	}
-	public void setHayvanlar(List<Hayvan> hayvanlar) {
-		this.hayvanlar = hayvanlar;
-	}
+//	public Hayvan getHayvan() {
+//		return hayvan;
+//	}
+//	public void setHayvan(Hayvan hayvan) {
+//		this.hayvan = hayvan;
+//	}
+
+
 
 	
 

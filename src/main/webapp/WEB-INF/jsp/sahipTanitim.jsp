@@ -114,18 +114,18 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${sahipler}" var="sahipler">
+								<c:forEach items="${sahipler}" var="sahip">
 									<tr>
-										<td>${sahipler.id}</td>
-										<td>${sahipler.ad}</td>
-										<td>${sahipler.soyad}</td>
-										<td>${sahipler.adres}</td>
-										<td>${sahipler.telefon}</td>
-										<td>${sahipler.eposta}</td>
+										<td>${sahip.id}</td>
+										<td>${sahip.ad}</td>
+										<td>${sahip.soyad}</td>
+										<td>${sahip.adres}</td>
+										<td>${sahip.telefon}</td>
+										<td>${sahip.eposta}</td>
 										<td>
-											<form action="/sahip/guncelle/${sahipler.id}">
+											<form action="/sahip/guncelle/${sahip.id}">
 												<a class="btn btn-outline-success"
-													href="${pageContext.request.contextPath}/sahip/guncelle/${sahipler.id}"
+													href="${pageContext.request.contextPath}/sahip/guncelle/${sahip.id}"
 													role="button">Düzenle</a>
 											</form>
 
@@ -133,7 +133,7 @@
 										<security:authorize access="hasRole('ADMIN')">
 											<td>
 												<form
-													action="${pageContext.request.contextPath}/sahipSil/${sahipler.id}"
+													action="${pageContext.request.contextPath}/sahipSil/${sahip.id}"
 													method="get">
 													<button
 														onclick="return confirm('Silme işlemi gerçekleşsin mi ?')"

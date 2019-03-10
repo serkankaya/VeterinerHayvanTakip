@@ -10,17 +10,13 @@ import org.springframework.transaction.annotation.Transactional;
 import net.serkankaya.vht.dao.SahipRepository;
 import net.serkankaya.vht.exception.SahipNotFoundException;
 import net.serkankaya.vht.model.Sahip;
-
+import net.serkankaya.vht.model.SahipHayvan;
 @Service
 @Transactional(rollbackFor=Exception.class)
 public class VHTSahipServiceImpl implements VHTSahipService {
 
-	private SahipRepository sahipRepository;
-	
 	@Autowired
-	public void setSahipRepository(SahipRepository sahipRepository) {
-		this.sahipRepository = sahipRepository;
-	}
+	private SahipRepository sahipRepository;
 	
 	@Override
 	public List<Sahip> getirTumSahipleri() {
@@ -55,6 +51,11 @@ public class VHTSahipServiceImpl implements VHTSahipService {
 	public void silSahip(Long id) {
 		sahipRepository.sil(id);
 
+	}
+
+	@Override
+	public List<SahipHayvan> getirSahipHayvanList() {
+		return sahipRepository.getirSahipHayvanList();
 	}
 
 }

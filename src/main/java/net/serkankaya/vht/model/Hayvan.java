@@ -2,8 +2,10 @@ package net.serkankaya.vht.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +14,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name="Hayvan")
@@ -27,22 +32,16 @@ public class Hayvan {
 	private String cins;
 	private String yas;
 	private String aciklama;
+	private String sahipID;
 	
-//	@ManyToOne
-//	private List<Sahip> hayvanlar = new ArrayList<Sahip>();
-	
-//	@ManyToOne
-//	@JoinColumn(name="sahipID")
-//	private Sahip sahip;
-	
-//	public Sahip getSahip() {
-//		return sahip;
-//	}
-//	public void setSahip(Sahip sahip) {
-//		this.sahip = sahip;
-//	}
 	public long getHayvanID() {
 		return hayvanID;
+	}
+	public String getSahipID() {
+		return sahipID;
+	}
+	public void setSahipID(String sahipID) {
+		this.sahipID = sahipID;
 	}
 	public void setHayvanID(long hayvanID) {
 		this.hayvanID = hayvanID;
@@ -78,11 +77,13 @@ public class Hayvan {
 	public void setAd(String ad) {
 		this.ad = ad;
 	}
+	
 	@Override
 	public String toString() {
 		return "Hayvan [hayvanID=" + hayvanID + ", ad=" + ad + ", tur=" + tur + ", cins=" + cins + ", yas=" + yas
 				+ ", aciklama=" + aciklama + "]";
 	}
+
 
 
 

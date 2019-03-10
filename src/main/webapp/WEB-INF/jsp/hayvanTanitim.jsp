@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -93,6 +94,9 @@
 						<span class="float-md-right">
 							<button type="button" class="btn btn-primary" data-toggle="modal"
 								data-target="#exampleModal">Hayvan Ekle</button>
+						</span> <span class="float-md-right" style="margin-right: 5px">
+							<button type="button" class="btn btn-primary" data-toggle="modal"
+								data-target="#sahipAtaModal">Sahip Ata</button>
 						</span>
 					</div>
 				</div>
@@ -107,6 +111,7 @@
 									<th scope="col">Cins</th>
 									<th scope="col">Yaş</th>
 									<th scope="col">Açıklama</th>
+									<th scope="col">Sahibi</th>
 									<th scope="col">Düzenle</th>
 									<security:authorize access="hasRole('ADMIN')">
 										<th scope="col">Sil</th>
@@ -115,25 +120,27 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${hayvanlar}" var="hayvanlar">
+								<c:forEach items="${hayvanlar}" var="hayvan">
 									<tr>
-										<td>${hayvanlar.hayvanID}</td>
-										<td>${hayvanlar.ad}</td>
-										<td>${hayvanlar.tur}</td>
-										<td>${hayvanlar.cins}</td>
-										<td>${hayvanlar.yas}</td>
-										<td style="max-width: 300px; word-wrap: break-word;">${hayvanlar.aciklama}</td>
+										<td>${hayvan.hayvanID}</td>
+										<td>${hayvan.ad}</td>
+										<td>${hayvan.tur}</td>
+										<td>${hayvan.cins}</td>
+										<td>${hayvan.yas}</td>
+										<td style="max-width: 300px; word-wrap: break-word;">${hayvan.aciklama}</td>
+										<td>${hayvan.sad}</td>
 										<td>
-											<form action="/hayvan/guncelle/${hayvanlar.hayvanID}">
+
+											<form action="/hayvan/guncelle/${hayvan.hayvanID}">
 												<a class="btn btn-outline-success"
-													href="${pageContext.request.contextPath}/hayvan/guncelle/${hayvanlar.hayvanID}"
+													href="${pageContext.request.contextPath}/hayvan/guncelle/${hayvan.hayvanID}"
 													role="button">Düzenle</a>
 											</form>
 										</td>
 										<security:authorize access="hasRole('ADMIN')">
 											<td>
 												<form
-													action="${pageContext.request.contextPath}/hayvanSil/${hayvanlar.hayvanID}"
+													action="${pageContext.request.contextPath}/hayvanSil/${hayvan.hayvanID}"
 													method="get">
 													<button
 														onclick="return confirm('Silme işlemi gerçekleşsin mi ?')"
@@ -213,6 +220,50 @@
 			</div>
 		</div>
 		<!-- Hayvan Ekleme Modal -->
+
+		<!-- Sahip Atama Modal -->
+		<div class="modal fade" id="sahipAtaModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Sahip Atama
+							İşlemi</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form:form modelAttribute="hayvan" method="post">
+							<div class="form-group">
+								<select class="custom-select custom-select-lg mb-3">
+									<option selected>Sahip Atanacak Hayvanı Seçiniz</option>
+									<c:forEach items="${hayvanlar}" var="hayvan">
+										<option value="1">${hayvan.ad} - ${hayvan.tur} -
+											${hayvan.cins}</option>
+									</c:forEach>
+								</select>
+							</div>
+							
+							<div class="form-group">
+							<select class="custom-select custom-select-lg mb-3">
+								<option selected>Yeni Sahibi Seçiniz</option>
+								<c:forEach items="${sahipler}" var="sahip">
+									<option value="1">${sahip.ad} ${sahip.soyad}</option>
+								</c:forEach>
+							</select>
+							</div>
+							
+							<form:button name="submit" type="submit" class="btn btn-primary">Kaydet</form:button>
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">İptal</button>
+						</form:form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Sahip Atama Modal -->
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
