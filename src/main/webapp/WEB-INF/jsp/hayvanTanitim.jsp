@@ -235,24 +235,29 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<form:form modelAttribute="hayvan" method="post">
+
+						<form:form modelAttribute="hayvanlar" method="post">
 							<div class="form-group">
 								<select class="custom-select custom-select-lg mb-3">
-									<option selected>Sahip Atanacak Hayvanı Seçiniz</option>
+									<option selected path="hayvan_ID">Sahip Atanacak
+										Hayvanı Seçiniz</option>
 									<c:forEach items="${hayvanlar}" var="hayvan">
-										<option value="1">${hayvan.ad} - ${hayvan.tur} -
-											${hayvan.cins}</option>
+										<option value="1">${hayvan.hayvanID}-${hayvan.ad} -
+											${hayvan.tur} - ${hayvan.cins}</option>
+
 									</c:forEach>
 								</select>
 							</div>
-							
+
 							<div class="form-group">
-							<select class="custom-select custom-select-lg mb-3">
-								<option selected>Yeni Sahibi Seçiniz</option>
-								<c:forEach items="${sahipler}" var="sahip">
-									<option value="1">${sahip.ad} ${sahip.soyad}</option>
-								</c:forEach>
-							</select>
+								<select class="custom-select custom-select-lg mb-3">
+									<option  selected path="sahip_ID">Yeni Sahibi Seçiniz</option>
+									<c:forEach items="${sahipler}" var="sahip">
+										<option value="1">${sahip.id}- ${sahip.ad} -
+											${sahip.soyad}</option>
+
+									</c:forEach>
+								</select>
 							</div>
 							
 							<form:button name="submit" type="submit" class="btn btn-primary">Kaydet</form:button>

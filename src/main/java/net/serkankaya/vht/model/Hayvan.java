@@ -32,17 +32,19 @@ public class Hayvan {
 	private String cins;
 	private String yas;
 	private String aciklama;
-	private String sahipID;
+	private long sahipID;
 	
 	public long getHayvanID() {
 		return hayvanID;
 	}
-	public String getSahipID() {
+	public long getSahipID() {
 		return sahipID;
 	}
-	public void setSahipID(String sahipID) {
+
+	public void setSahipID(long sahipID) {
 		this.sahipID = sahipID;
 	}
+
 	public void setHayvanID(long hayvanID) {
 		this.hayvanID = hayvanID;
 	}

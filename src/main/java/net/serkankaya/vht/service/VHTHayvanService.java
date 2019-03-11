@@ -13,4 +13,5 @@ public interface VHTHayvanService {
 	void olustur(Hayvan hayvan);
 	Hayvan guncelle(Hayvan hayvan);
 	void sil(Long id);
+	void sahipAta(Long hayvanID,long sahipID);
 }

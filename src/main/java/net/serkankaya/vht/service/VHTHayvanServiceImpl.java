@@ -50,4 +50,9 @@ public class VHTHayvanServiceImpl implements VHTHayvanService {
 		return hayvanRepository.getirHayvanSahipList();
 	}
 
+	@Override
+	public void sahipAta(Long hayvanID, long sahipID) {
+		hayvanRepository.sahipAta(hayvanID, sahipID);
+	}
+
 }
