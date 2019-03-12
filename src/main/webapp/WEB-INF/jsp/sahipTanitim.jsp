@@ -107,7 +107,9 @@
 									<th scope="col">Adres</th>
 									<th scope="col">Telefon</th>
 									<th scope="col">E-Posta</th>
+									<th scope="col">Sahip Olduğu Hayvanlar</th>
 									<th scope="col">Düzenle</th>
+									
 									<security:authorize access="hasRole('ADMIN')">
 										<th scope="col">Sil</th>
 									</security:authorize>
@@ -122,6 +124,11 @@
 										<td>${sahip.adres}</td>
 										<td>${sahip.telefon}</td>
 										<td>${sahip.eposta}</td>
+										<td>
+										<c:forEach items="${sahip.hadi}" var="hayvans">
+											${hayvans}</br>
+										</c:forEach>
+										</td>
 										<td>
 											<form action="/sahip/guncelle/${sahip.id}">
 												<a class="btn btn-outline-success"

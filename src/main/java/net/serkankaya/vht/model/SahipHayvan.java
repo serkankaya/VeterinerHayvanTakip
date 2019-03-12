@@ -1,5 +1,7 @@
 package net.serkankaya.vht.model;
 
+import java.util.List;
+
 public class SahipHayvan {
 	private long id;
 	private String ad;
@@ -7,10 +9,15 @@ public class SahipHayvan {
 	private String adres;
 	private String telefon;
 	private String eposta;
-	private String hadi;
+	private List<String> hadi;
 	
 
-	public SahipHayvan(long id, String ad, String soyad, String adres, String telefon, String eposta, String hadi) {
+
+	public SahipHayvan() {
+		
+	}
+	public SahipHayvan(long id, String ad, String soyad, String adres, String telefon, String eposta,
+			List<String> hadi) {
 		super();
 		this.id = id;
 		this.ad = ad;
@@ -56,12 +63,13 @@ public class SahipHayvan {
 	public void setEposta(String eposta) {
 		this.eposta = eposta;
 	}
-	public String getHadi() {
+	public List<String> getHadi() {
 		return hadi;
 	}
-	public void setHadi(String hadi) {
+	public void setHadi(List<String> hadi) {
 		this.hadi = hadi;
 	}
+
 
 
 	

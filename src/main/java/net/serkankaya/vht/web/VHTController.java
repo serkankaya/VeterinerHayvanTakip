@@ -47,7 +47,7 @@ public class VHTController {
 	@RequestMapping("/sahip-tanitim")
 	public ModelAndView getSahipler() {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("sahipler", vhtSahipService.getirTumSahipleri());
+		mav.addObject("sahipler", vhtSahipService.getirSahipHayvanList());
 		mav.setViewName("sahipTanitim");
 		return mav;
 	}
