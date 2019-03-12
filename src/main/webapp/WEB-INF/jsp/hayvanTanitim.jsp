@@ -30,7 +30,18 @@
 		console.log(form.action);
 		event.preventDefault();
 	}
+	function setSID(form) {
+		form.action = form.urlVal.value;
+		console.log(form.action);
+		event.preventDefault();
+	}
+	function setHID(form) {
+		form.action = "hayvan/ara/" + form.urlVal.value + "/"
+		console.log(form.action);
+		event.preventDefault();
+	}
 </script>
+
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
@@ -236,30 +247,33 @@
 					</div>
 					<div class="modal-body">
 
-						<form:form modelAttribute="hayvanlar" method="post">
+						<form:form modelAttribute="sahipata" method="get"
+							action="/sahipAtamaYonlendir">
 							<div class="form-group">
-								<select class="custom-select custom-select-lg mb-3">
-									<option selected path="hayvan_ID">Sahip Atanacak
-										Hayvanı Seçiniz</option>
-									<c:forEach items="${hayvanlar}" var="hayvan">
-										<option value="1">${hayvan.hayvanID}-${hayvan.ad} -
-											${hayvan.tur} - ${hayvan.cins}</option>
-
+								<form:select path="hid"
+									class="custom-select custom-select-lg mb-3">
+									<form:option value="-1">Atanacak Hayvanı Seçin</form:option>
+									<c:forEach var="hayvan" items="${hayvanlar}">
+										<form:option value="${hayvan.hayvanID}">
+											<c:out value="${hayvan.ad} - ${hayvan.tur} - ${hayvan.cins}" />
+										</form:option>
 									</c:forEach>
-								</select>
+								</form:select>
 							</div>
 
 							<div class="form-group">
-								<select class="custom-select custom-select-lg mb-3">
-									<option  selected path="sahip_ID">Yeni Sahibi Seçiniz</option>
-									<c:forEach items="${sahipler}" var="sahip">
-										<option value="1">${sahip.id}- ${sahip.ad} -
-											${sahip.soyad}</option>
 
+								<form:select path="sid"
+									class="custom-select custom-select-lg mb-3">
+									<option value="">Hayvana Atanacak Sahibi Seçin</option>
+									<c:forEach var="sahip" items="${sahipler}">
+										<form:option value="${sahip.id}">
+											<c:out value="${sahip.ad} ${sahip.soyad}" />
+										</form:option>
 									</c:forEach>
-								</select>
+								</form:select>
 							</div>
-							
+
 							<form:button name="submit" type="submit" class="btn btn-primary">Kaydet</form:button>
 							<button type="button" class="btn btn-secondary"
 								data-dismiss="modal">İptal</button>
