@@ -3,6 +3,7 @@ package net.serkankaya.vht;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -12,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled=true,securedEnabled=true)
+//@EnableOAuth2Sso
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailsService userDetailsService;
@@ -20,7 +22,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-		.antMatchers("/**/favicon.ico", "/css/**", "/js/**", "/images/**", "/webjars/**", "/login.html").permitAll();
+		.antMatchers("/**/favicon.ico", "/css/**", "/js/**", "/images/**", "/callback", "/webjars/**", "/login.html").permitAll();
 		http.authorizeRequests().antMatchers("/actuator/**").access("hasRole('ADMIN')");
 //		http.authorizeRequests().antMatchers("/sahip/guncelle/**").access("hasRole('ADMIN')");
 		http.authorizeRequests().anyRequest().authenticated();

@@ -1,6 +1,5 @@
 package net.serkankaya.vht.web;
 
-
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -11,6 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcProperties.View;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -63,9 +64,24 @@ public class VHTController {
 
 	@RequestMapping("/login.html")
 	public ModelAndView login() {
+		
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("login");
 		return mav;
+	}
+	
+	@RequestMapping("/googleLogin")
+	public String googleLogin() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		System.out.println(auth.getPrincipal());
+		return "/callback";
+	}
+
+	@RequestMapping("/callback")
+	public String callback() {
+		System.out.println("redirecting to home page");
+		return "/login.html";
 	}
 
 	@RequestMapping("/")
@@ -102,41 +118,37 @@ public class VHTController {
 	public Hayvan initModelForHayvan() {
 		return new Hayvan();
 	}
-	
-	@ModelAttribute(value="sahipata")
+
+	@ModelAttribute(value = "sahipata")
 	public SahipAta initModelForSahipAta() {
 		return new SahipAta();
 	}
-	
 
 	@RequestMapping(value = "/hayvan-tanitim", method = RequestMethod.POST)
 	public String handleFormSubmitForAddHayvan(@ModelAttribute Hayvan hayvan) {
 		vhtHayvanService.olustur(hayvan);
 		return "redirect:/hayvan-tanitim";
 	}
-	
 
-	
-	
 	@RequestMapping(value = "sahipAta/{hid}/{sid}", method = RequestMethod.GET)
-	public String sahipAta(@PathVariable("hid") long hid,@PathVariable("sid") long sid) {
+	public String sahipAta(@PathVariable("hid") long hid, @PathVariable("sid") long sid) {
 		vhtHayvanService.sahipAta(hid, sid);
 		System.out.println("Hello");
 		return "redirect:/hayvan-tanitim";
 	}
-	
+
 	@RequestMapping(value = "/sahipAtamaYonlendir", method = RequestMethod.GET)
 	public String sahipAtamaYonlendir(@ModelAttribute("sahipata") SahipAta sahipAta) {
-		return "redirect:/sahipAta/"+sahipAta.getHid()+"/"+sahipAta.getSid();
+		return "redirect:/sahipAta/" + sahipAta.getHid() + "/" + sahipAta.getSid();
 	}
-	
+
 	@RequestMapping(value = "/sahip/guncelle/{id}", method = RequestMethod.GET)
 	public String sahipBul(@PathVariable Long id, ModelMap modelMap) {
 		Sahip sahip = vhtSahipService.getirSahipIdIle(id);
 		modelMap.put("sahipguncelle", sahip);
 		return "sahipGuncelle";
 	}
-	
+
 	@RequestMapping(value = "/sahip/guncelle/{id}", method = RequestMethod.POST)
 	public String sahipGuncelle(@ModelAttribute Sahip sahip) {
 		vhtSahipService.guncelle(sahip);
