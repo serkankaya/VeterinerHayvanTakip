@@ -23,7 +23,7 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
-	<script>
+<script>
 	function setURL(form) {
 		form.action = "sahip/ara/" + form.urlVal.value;
 		console.log(form.action);
@@ -70,9 +70,10 @@
 								property="principal.authorities" />
 						</li>
 					</ul>
-					<form action="sahip/ara/" onsubmit="setURL(this)" class="form-inline my-2 my-lg-0" method="get">
-						<input id="ad" name="ara" class="form-control mr-sm-3" type="search"
-							placeholder="Sahip Ara">
+					<form action="sahip/ara/" onsubmit="setURL(this)"
+						class="form-inline my-2 my-lg-0" method="get">
+						<input id="ad" name="ara" class="form-control mr-sm-3"
+							type="search" placeholder="Sahip Ara">
 						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">ARA</button>
 					</form>
 				</div>
@@ -109,7 +110,7 @@
 									<th scope="col">E-Posta</th>
 									<th scope="col">Sahip Olduğu Hayvanlar</th>
 									<th scope="col">Düzenle</th>
-									
+
 									<security:authorize access="hasRole('ADMIN')">
 										<th scope="col">Sil</th>
 									</security:authorize>
@@ -124,11 +125,9 @@
 										<td>${sahip.adres}</td>
 										<td>${sahip.telefon}</td>
 										<td>${sahip.eposta}</td>
-										<td>
-										<c:forEach items="${sahip.hadi}" var="hayvans">
+										<td><c:forEach items="${sahip.hadi}" var="hayvans">
 											${hayvans}</br>
-										</c:forEach>
-										</td>
+											</c:forEach></td>
 										<td>
 											<form action="/sahip/guncelle/${sahip.id}">
 												<a class="btn btn-outline-success"

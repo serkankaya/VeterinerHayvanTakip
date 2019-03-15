@@ -1,35 +1,19 @@
 package net.serkankaya.vht.web;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
-import javax.validation.Valid;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.servlet.WebMvcProperties.View;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import net.serkankaya.vht.model.Hayvan;
-import net.serkankaya.vht.model.HayvanSahip;
 import net.serkankaya.vht.model.Sahip;
 import net.serkankaya.vht.model.SahipAta;
 import net.serkankaya.vht.service.VHTHayvanService;
@@ -64,39 +48,26 @@ public class VHTController {
 
 	@RequestMapping("/login.html")
 	public ModelAndView login() {
-		
-		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("login");
+		mav.setViewName("/login");
 		return mav;
 	}
 	
-	@RequestMapping("/googleLogin")
-	public String googleLogin() {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		System.out.println(auth.getPrincipal());
-		return "/callback";
-	}
-
-	@RequestMapping("/callback")
-	public String callback() {
-		System.out.println("redirecting to home page");
-		return "/login.html";
-	}
-
 	@RequestMapping("/")
-	public ModelAndView welcome() {
+	public ModelAndView ansayfaYonlendirme() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("index");
+		mav.setViewName("anasayfa");
 		return mav;
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(value = "hayvanSil/{hayvanID}", method = RequestMethod.GET)
 	public String silHayvan(@PathVariable("hayvanID") long id) {
 		vhtHayvanService.sil(id);
 		return "redirect:/hayvan-tanitim";
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(value = "sahipSil/{id}", method = RequestMethod.GET)
 	public String silSahip(@PathVariable("id") long id) {
 		vhtSahipService.silSahip(id);

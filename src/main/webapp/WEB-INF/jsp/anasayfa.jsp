@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,19 +42,23 @@
 						<li class="nav-item active"><a class="nav-link" href="/">Anasayfa
 								<span class="sr-only">(current)</span>
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="/hayvan-tanitim">Hayvan Tanıtımı</a></li>
-<!-- 						<li class="nav-item"><a class="nav-link disabled" href="#">Sahip Tanıtımı</a> -->
-						<li class="nav-item"><a class="nav-link" href="/sahip-tanitim">Sahip Tanıtımı</a>
+						<li class="nav-item"><a class="nav-link"
+							href="/hayvan-tanitim">Hayvan Tanıtımı</a></li>
+						<!-- 						<li class="nav-item"><a class="nav-link disabled" href="#">Sahip Tanıtımı</a> -->
+						<li class="nav-item"><a class="nav-link"
+							href="/sahip-tanitim">Sahip Tanıtımı</a>
 						<li class="nav-item">
 							<form action="logout" method="post">
-								<button type="submit" class="btn btn-outline-danger">Çıkış</button> 
-								<input type="hidden"
-									name="${_csrf.parameterName}" value="${_csrf.token}">
+								<button type="submit" class="btn btn-outline-danger">Çıkış</button>
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}">
 							</form>
 						</li>
-						<li class="navbar-text" style="color: blue;margin-left: 50px">Merhaba <span style="color: blue"><security:authentication
-									property="principal.username" /></span > , Kullanıcı Yetkisi: <security:authentication
-								property="principal.authorities" /></li>
+						<li class="navbar-text" style="color: blue; margin-left: 50px">Merhaba
+							<span style="color: blue"><security:authentication
+									property="principal.username" /></span> , Kullanıcı Yetkisi: <security:authentication
+								property="principal.authorities" />
+						</li>
 					</ul>
 
 				</div>
@@ -62,37 +66,26 @@
 
 		</div>
 		<div id="body">
-			<div class="jumbotron" style="background-color:transparent !important;">
+			<div class="jumbotron"
+				style="background-color: transparent !important;">
 				<h3>Veteriner Hayvan Takip</h3>
 				<h5>Kullanılan Teknolojiler;</h5>
-				<h6> * Maven</h6>
-				<h6> * Bootstrap</h6>
-				<h6> * Spring Boot</h6>
-				<h6> * JPA-Hibernate</h6>
-				<h6> * Tomcat(Gömülü)</h6>
-				<h6> * Spring Security</h6>
-				<h6> * Java Server Pages</h6>
-				<h6> * H2 Veritabanı(Gömülü)</h6>
+				<h6>* Maven</h6>
+				<h6>* Bootstrap</h6>
+				<h6>* Spring Boot</h6>
+				<h6>* JPA-Hibernate</h6>
+				<h6>* Tomcat(Gömülü)</h6>
+				<h6>* Spring Security</h6>
+				<h6>* Java Server Pages</h6>
+				<h6>* H2 Veritabanı(Gömülü)</h6>
 				
-				
-				
-				
-				
-				
-				
-				<p>
-<!-- 					<a class="btn btn-lg btn-primary" href="../../components/#navbar" -->
-<!-- 						role="button">View navbar docs &raquo;</a> -->
-				</p>
 			</div>
 		</div>
 		<div id="footer">
 			<footer class="font-small blue pt-4">
 				<!-- Copyright -->
-				<div class="footer-copyright text-center py-3">
-					* Veteriner Hayvan
-						Takip v1.0 -Serkan Kaya - © 2019 -MIT License *
-				</div>
+				<div class="footer-copyright text-center py-3">* Veteriner
+					Hayvan Takip v1.0 -Serkan Kaya - © 2019 -MIT License *</div>
 				<!-- Copyright -->
 
 			</footer>

@@ -41,9 +41,7 @@
 			</div>
 			<button class="btn btn-lg btn-primary btn-block" type="submit"
 				value="Login">Giriş Yap</button>
-			<a id="google-button" class="btn btn-block btn-social btn-google">
-  <i class="fa fa-google"></i> Sign in with Google
-</a>				
+				
 			<font color="red"> <c:if test="${not empty param.loginFailed}">
 					<c:out value="Giriş Başarısız !!! Kullanıcı Adı veya Şifre yanlış"></c:out>
 				</c:if>
