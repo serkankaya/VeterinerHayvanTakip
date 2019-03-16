@@ -37,27 +37,26 @@ Veterinerin Kullanabileceği basit bir hayvan takip web yazılımı projesi ;
 **java -jar VeterinerHayvanTakip.war**</br>
 
 
-**Proje Tanitim 1**</br>
-![](/gorsel-veri/proje-tanitim-1.gif)
-**Proje Tanitim 2**</br>
-![](/gorsel-veri/proje-tanitim-2.gif)
-**Proje Tanitim 3**</br>
-![](/gorsel-veri/proje-tanitim-3.gif)
-</br>
+**Proje Tanitim Gorsel 1**</br>
+![](/gorsel-veri/proje-tanitim-1.gif)</br>
+**Proje Tanitim Gorsel 2**</br>
+![](/gorsel-veri/proje-tanitim-2.gif)</br>
+**Proje Tanitim Gorsel 3**</br>
+![](/gorsel-veri/proje-tanitim-3.gif)</br>
 **Birim Testleri**</br>
 Proje içerisinde 2 adet Birim testi bulunmakta.Bunlar ;</br>
-* Hayvan Servisi için Test;</br>
+* Hayvan Servisi için görsel Test;</br>
 ![](/gorsel-veri/hayvan-servisi-birim-test.gif)
-* Hayvan Sahibi için Test;</br>
+* Hayvan Sahibi için görsel Test;</br>
 ![](/gorsel-veri/sahip-servisi-birim-test.gif)
 
 **Gerekli Kullanıcı Bilgileri**
-ADMIN kullanıcısı için;</br>
-Kullanıcı Adı : admin</br>
-şifre	      : admin</br>
-USER kullanıcısı için;</br>
-Kullanıcı Adı : user</br>
-şifre	      : user</br>
+*ADMIN kullanıcısı için;*</br>
+**Kullanıcı Adı :** admin</br>
+**Şifre	      :** admin</br>
+*USER kullanıcısı için;*</br>
+**Kullanıcı Adı :** user</br>
+**şifre	      :** user</br>
 
 
 
